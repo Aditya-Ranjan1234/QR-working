@@ -28,7 +28,7 @@ uvicorn app:app --reload
 ## Test
 
 ```powershell
-python -m unittest discover -s tests -v
+python tests/test_qr.py
 ```
 
 ## Project layout
