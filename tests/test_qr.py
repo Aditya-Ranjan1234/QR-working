@@ -1,6 +1,11 @@
 # test_qr.py
 # Verification script for GF(256), Reed-Solomon and QR Encoder/Decoder
 
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 from algorithms.gf256 import gf_mul, gf_div, gf_inv, gf_add
 from algorithms.reedsolomon import rs_encode_msg, rs_correct_msg
 from algorithms.qr_encoder import create_qr_code
