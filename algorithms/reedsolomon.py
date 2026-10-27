@@ -2,7 +2,7 @@
 # Pure Python Reed-Solomon Encoder and Decoder over GF(256)
 # Based on the verified academic algorithms for GF(2^8)
 
-from gf256 import gf_add, gf_sub, gf_mul, gf_div, gf_pow, gf_inv, gf_exp, gf_log
+from .gf256 import gf_add, gf_sub, gf_mul, gf_div, gf_pow, gf_inv, gf_exp, gf_log
 
 # --- Polynomial helpers specifically for RS ---
 

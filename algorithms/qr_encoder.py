@@ -1,7 +1,7 @@
 # qr_encoder.py
 # Pure Python QR Code Generator (Supports Version 1 & 2, Byte Mode, Levels L, M, Q, H)
 
-from reedsolomon import rs_encode_msg
+from .reedsolomon import rs_encode_msg
 
 # QR Code Specifications
 # format: (version, ec_level) -> (data_bytes, ecc_bytes, matrix_size)

@@ -1,7 +1,7 @@
 # polynomial.py
 # Polynomial arithmetic over GF(256)
 
-from gf256 import gf_add, gf_sub, gf_mul, gf_div
+from .gf256 import gf_add, gf_sub, gf_mul, gf_div
 
 def poly_add(p1: list[int], p2: list[int]) -> list[int]:
     """Add two polynomials over GF(256)."""

@@ -5,11 +5,11 @@ from pydantic import BaseModel
 from typing import Optional
 import os
 
-from gf256 import gf_mul, gf_add, gf_div, gf_inv, gf_exp, gf_log
-from polynomial import poly_mul, poly_add, poly_eval
-from reedsolomon import rs_encode_msg, rs_calc_syndromes, rs_find_error_locator, rs_find_error_locator_verbose, rs_find_errors, rs_forney_magnitudes, rs_correct_msg
-from qr_encoder import create_qr_code, create_qr_code_verbose, QR_SPECS
-from qr_decoder import decode_qr_grid
+from algorithms.gf256 import gf_mul, gf_add, gf_div, gf_inv, gf_exp, gf_log
+from algorithms.polynomial import poly_mul, poly_add, poly_eval
+from algorithms.reedsolomon import rs_encode_msg, rs_calc_syndromes, rs_find_error_locator, rs_find_error_locator_verbose, rs_find_errors, rs_forney_magnitudes, rs_correct_msg
+from algorithms.qr_encoder import create_qr_code, create_qr_code_verbose, QR_SPECS
+from algorithms.qr_decoder import decode_qr_grid
 
 app = FastAPI(title="QR & Reed-Solomon Scratch Visualizer")
 
@@ -152,7 +152,7 @@ def api_decode_qr(req: QRDecodeReq):
         text, err_pos, magnitudes = decode_qr_grid(req.grid, req.types, erased_idx)
         
         # Verbose trace for step-by-step UI table
-        import qr_decoder
+        from algorithms import qr_decoder
         left_bits, right_bits = qr_decoder.extract_format_bits(req.grid)
         ec_level, mask_pattern = qr_decoder.decode_format_info(left_bits, right_bits)
         version = 1 if len(req.grid) == 21 else 2
@@ -194,7 +194,7 @@ def api_decode_qr(req: QRDecodeReq):
     except Exception as e:
         # Fallback trace in case of complete decode failure
         try:
-            import qr_decoder
+            from algorithms import qr_decoder
             left_bits, right_bits = qr_decoder.extract_format_bits(req.grid)
             ec_level, mask_pattern = qr_decoder.decode_format_info(left_bits, right_bits)
             version = 1 if len(req.grid) == 21 else 2
@@ -295,5 +295,4 @@ def api_gf256_table(req: GF256TableReq):
     }
 
 # Serve Frontend static files
-os.makedirs("static", exist_ok=True)
-app.mount("/", StaticFiles(directory="static", html=True), name="static")
+app.mount("/", StaticFiles(directory=".", html=True), name="static")

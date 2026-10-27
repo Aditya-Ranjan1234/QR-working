@@ -1,9 +1,9 @@
 # qr_decoder.py
 # Pure Python QR Code Decoder & Error Correction pipeline (Supports Version 1 & 2)
 
-from gf256 import gf_add
-from reedsolomon import rs_correct_msg
-from qr_encoder import QR_SPECS, EC_INDICATORS, FORMAT_MASK, get_format_info, bits_to_bytes
+from .gf256 import gf_add
+from .reedsolomon import rs_correct_msg
+from .qr_encoder import QR_SPECS, EC_INDICATORS, FORMAT_MASK, get_format_info, bits_to_bytes
 
 def decode_format_info(left_bits: list[int], right_bits: list[int]) -> tuple[str, int]:
     """

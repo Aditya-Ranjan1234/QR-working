@@ -1,10 +1,10 @@
 # test_qr.py
 # Verification script for GF(256), Reed-Solomon and QR Encoder/Decoder
 
-from gf256 import gf_mul, gf_div, gf_inv, gf_add
-from reedsolomon import rs_encode_msg, rs_correct_msg
-from qr_encoder import create_qr_code
-from qr_decoder import decode_qr_grid
+from algorithms.gf256 import gf_mul, gf_div, gf_inv, gf_add
+from algorithms.reedsolomon import rs_encode_msg, rs_correct_msg
+from algorithms.qr_encoder import create_qr_code
+from algorithms.qr_decoder import decode_qr_grid
 
 def test_gf256():
     print("Testing GF(256)...")
